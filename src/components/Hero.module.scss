@@ -1,0 +1,25 @@
+@use "../styles/variables" as v;
+
+.heroContainer {
+    background-color: v.$cream-bg;
+    padding: 100px 20px;
+    text-align: center;
+
+    h1 {
+        font-family: v.$serif-font;
+        color: v.$deep-charcoal;
+        font-size: 4rem;
+        transition: color v.$smooth;
+
+        &:hover {
+            color: v.$primary-red; // Simple nesting!
+        }
+    }
+
+    .subtitle {
+        font-family: v.$sans-font;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: lighten(v.$deep-charcoal, 20%);
+    }
+}
