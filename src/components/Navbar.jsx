@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import styles from './Navbar.module.scss';
 
 const navLinks = [
@@ -9,27 +9,40 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+    const prefersReducedMotion = useReducedMotion();
+
     return (
-        <nav style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            padding: '2rem 10%',
-            alignItems: 'baseline',
-            fontFamily: 'serif'
-        }}>
-            <motion.div
+        <nav
+            aria-label="Main navigation"
+            style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                padding: '2rem 10%',
+                alignItems: 'baseline',
+                fontFamily: 'serif'
+            }}
+        >
+            <motion.a
+                href="/"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                style={{ fontSize: '1.2rem', fontWeight: 'bold', letterSpacing: '1px' }}
+                style={{
+                    fontSize: '1.2rem',
+                    fontWeight: 'bold',
+                    letterSpacing: '1px',
+                    textDecoration: 'none',
+                    color: 'inherit'
+                }}
             >
                 S. WALKER
-            </motion.div>
+            </motion.a>
 
-            <ul style={{ display: 'flex', gap: '2rem', listStyle: 'none', margin: 0 }}>
+            <ul style={{ display: 'flex', gap: '2rem', listStyle: 'none', margin: 0, padding: 0 }}>
                 {navLinks.map((link) => (
-                    <motion.li key={link.name} whileHover={{ y: -2 }}>
+                    <motion.li key={link.name} whileHover={prefersReducedMotion ? {} : { y: -2 }}>
                         <a
                             href={link.href}
+                            className={styles.navLink}
                             style={{
                                 textDecoration: 'none',
                                 color: '#333',
@@ -38,10 +51,9 @@ const Navbar = () => {
                             }}
                         >
                             {link.name}
-                            {/* This is the hover underline effect */}
                             <motion.div
                                 initial={{ scaleX: 0 }}
-                                whileHover={{ scaleX: 1 }}
+                                whileHover={prefersReducedMotion ? {} : { scaleX: 1 }}
                                 style={{
                                     height: '1px',
                                     backgroundColor: '#bc4749',

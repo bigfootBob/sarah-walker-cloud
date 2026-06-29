@@ -1,0 +1,7 @@
+.navLink {
+    &:focus-visible {
+        outline: 2px solid #bc4749;
+        outline-offset: 3px;
+        border-radius: 2px;
+    }
+}

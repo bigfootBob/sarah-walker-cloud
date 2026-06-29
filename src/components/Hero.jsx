@@ -1,28 +1,25 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import styles from './Hero.module.scss';
 
 const Hero = () => {
-    // Variants for the container to coordinate the children
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.3, // Delays the start of each child animation
-                delayChildren: 0.2,
-            },
-        },
-    };
+    const prefersReducedMotion = useReducedMotion();
 
-    // Variants for the individual text items
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.8, ease: "easeOut" }
-        },
-    };
+    const containerVariants = prefersReducedMotion
+        ? { hidden: {}, visible: {} }
+        : {
+            hidden: { opacity: 0 },
+            visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.3, delayChildren: 0.2 },
+            },
+        };
+
+    const itemVariants = prefersReducedMotion
+        ? { hidden: {}, visible: {} }
+        : {
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+        };
 
     return (
         <motion.section
