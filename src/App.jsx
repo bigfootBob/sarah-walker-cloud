@@ -9,6 +9,10 @@ function App() {
         <Navbar />
         <main id="main-content" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           <Hero />
+          <section id="art" aria-label="Art" />
+          <section id="writing" aria-label="Writing" />
+          <section id="other-projects" aria-label="Other Projects" />
+          <section id="about" aria-label="About" />
         </main>
         <Footer />
       </div>
